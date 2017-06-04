@@ -8,6 +8,7 @@ before_install:
 install:
 # cd to module folder
     - cd cython_c_wrap/src
+    - make libcos_doubles_ctypes.so
     - python setup.py build_ext --inplace
 # cd to test folder
     - cd ../tests
