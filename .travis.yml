@@ -1,0 +1,15 @@
+language: python
+python:
+# specify versions
+    - "3.5"
+before_install:
+# add module path
+    - export PYTHONPATH="$(pwd)/cython_c_wrap/src:$PYTHONPATH"
+install:
+# cd to module folder
+    - cd cython_c_wrap/src
+    - python setup.py build_ext --inplace
+# cd to test folder
+    - cd ../tests
+script:
+    python -m unittest discover
