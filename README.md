@@ -1,3 +1,13 @@
+## Wrapping C Functions for Python
+
+### Main Reference
+Valentin Haenel, [2.8. Interfacing with C](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html), Scipy lecture notes, Oct 18 2016.
+
+* Python-C-API
+* Ctypes
+* SWIG
+* Cython
+
 ## Build Status
 
 |branch              | single argument                                                                                                                                      | NumPy                                                                                                                                              |
