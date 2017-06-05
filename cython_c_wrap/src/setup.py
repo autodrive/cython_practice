@@ -44,7 +44,7 @@ cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy",
                                 include_dir=[numpy.get_include()])
 
 # run the setup
-setup(ext_modules=[cos_wrap, cos_wrap_swig, cos_wrap_swig_numpy])
+setup(ext_modules=[cos_wrap, cos_wrap_swig, cos_wrap_swig_numpy], include_dir=[numpy.get_include()])
 
 # for Cython
 setup(cmdclass={'build_ext': build_ext},
