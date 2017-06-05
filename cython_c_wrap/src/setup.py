@@ -15,8 +15,11 @@ cos_wrap = Extension('cos_wrap', sources=['cos_wrap.c'])
 # for SWIG
 cos_wrap_swig = Extension("_cos_wrap_swig", sources=["cos_wrap_swig.c", "cos_wrap_swig.i"])
 
+# for SWIG NumPy Support
+cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy", sources=["cos_wrap_swi_numpyg.c", "cos_wrap_swig_numpy.i"])
+
 # run the setup
-setup(ext_modules=[cos_wrap, cos_wrap_swig])
+setup(ext_modules=[cos_wrap, cos_wrap_swig, cos_wrap_swig_numpy])
 
 # for Cython
 setup(cmdclass={'build_ext': build_ext},
