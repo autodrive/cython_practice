@@ -39,6 +39,7 @@ with open(np_file_name, 'wb') as file:
 
 # for SWIG NumPy Support
 # https://github.com/hmmlearn/hmmlearn/issues/43#issuecomment-138609372
+print("numpy.get_include() = %r" % numpy.get_include())
 cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy",
                                 sources=["cos_wrap_swig_numpy.c", "cos_wrap_swig_numpy.i"],
                                 include_dir=[numpy.get_include()])
