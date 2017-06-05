@@ -6,11 +6,11 @@
 #   Available: , http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id10
 
 import re
+import urllib.request as requests
+from Cython.Distutils import build_ext
 from distutils.core import setup, Extension
 
 import numpy
-import requests
-from Cython.Distutils import build_ext
 
 # define the extension module for Python-C-API
 cos_wrap = Extension('cos_wrap', sources=['cos_wrap.c'])
@@ -24,7 +24,7 @@ np_version = re.compile(r'(?P<MAJOR>[0-9]+)\.'
       .search(numpy.__version__)
 np_version_string = np_version.group()
 np_version_info = {key: int(value)
-                   for key, value in np_version.groupdict().items()}
+                   for key, value in list(np_version.groupdict().items())}
 
 np_file_name = 'numpy.i'
 np_file_url = 'https://raw.githubusercontent.com/numpy/numpy/maintenance/' + \
@@ -34,9 +34,8 @@ if (np_version_info['MAJOR'] == 1 and np_version_info['MINOR'] < 9):
 
 chunk_size = 8196
 with open(np_file_name, 'wb') as file:
-      for chunk in requests.get(np_file_url,
-                                stream=True).iter_content(chunk_size):
-            file.write(chunk)
+    with requests.urlopen(np_file_url) as remote:
+        file.write(remote.read())
 
 # for SWIG NumPy Support
 cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy", sources=["cos_wrap_swi_numpyg.c", "cos_wrap_swig_numpy.i"])
