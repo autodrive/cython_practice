@@ -7,6 +7,7 @@ import cos_wrap_ctypes  # ctypes
 import cos_wrap_ctypes_numpy  # ctypes NumPy support
 import cos_wrap_swig  # SWIG
 import numpy as np
+import cos_wrap_cython  # cython
 
 
 class TestCosWrapBase(unittest.TestCase):
@@ -63,6 +64,14 @@ class TestCosWrapSwig(TestCosWrapBase):
 
     def test_cos_wrong_argument(self):
         self.run_test_float_wrong_arg(cos_wrap_swig.cos_func_swig, TypeError)
+
+
+class TestCosWrapCython(TestCosWrapBase):
+    def test_cos(self):
+        self.run_test_float(cos_wrap_cython.cos_func_cython)
+
+    def test_cos_wrong_argument(self):
+        self.run_test_float_wrong_arg(cos_wrap_cython.cos_func_cython, TypeError)
 
 
 if __name__ == '__main__':
