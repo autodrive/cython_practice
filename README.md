@@ -3,10 +3,10 @@
 ### Main Reference
 Valentin Haenel, [2.8. Interfacing with C](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html), Scipy lecture notes, Oct 18 2016.
 
-* Python-C-API
-* Ctypes
-* SWIG
-* Cython
+* [Python-C-API](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id1)
+* [Ctypes](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id3)
+* [SWIG](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#swig)
+* [Cython](http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id10)
 
 ## Build Status
 
