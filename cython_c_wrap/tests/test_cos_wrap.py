@@ -31,6 +31,8 @@ class TestCosWrap(TestCosWrapBase):
     def test_cos_wrong_argument(self):
         self.run_test_float_wrong_arg(cos_wrap.cos_func, TypeError)
 
+
+class TestCosWrapCtype(TestCosWrapBase):
     def test_ctypes_cos(self):
         self.run_test_float(cos_wrap_ctypes.cos_func)
 
