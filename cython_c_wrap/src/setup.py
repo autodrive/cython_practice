@@ -38,7 +38,10 @@ with open(np_file_name, 'wb') as file:
         file.write(remote.read())
 
 # for SWIG NumPy Support
-cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy", sources=["cos_wrap_swig_numpy.c", "cos_wrap_swig_numpy.i"])
+# https://github.com/hmmlearn/hmmlearn/issues/43#issuecomment-138609372
+cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy",
+                                sources=["cos_wrap_swig_numpy.c", "cos_wrap_swig_numpy.i"],
+                                include_dir=[numpy.get_include()])
 
 # run the setup
 setup(ext_modules=[cos_wrap, cos_wrap_swig, cos_wrap_swig_numpy])
