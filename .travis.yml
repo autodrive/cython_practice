@@ -5,11 +5,18 @@ python:
 before_install:
 # add module path
     - export PYTHONPATH="$(pwd)/cython_c_wrap/src:$PYTHONPATH"
+    # https://gist.github.com/douglas/1066406 : that downloads older version of swig
+    # https://askubuntu.com/questions/893932/sudo-apt-get-install-swig-on-ubuntu-14-04
+    # Swig 3.0.2 is only available in the trusty-backports repository
+    # If one wants the 3.0.2 version, should select it explicitly.
+    - sudo apt-get install swig
+    - swig -version
 install:
 # cd to module folder
     - cd cython_c_wrap/src
     - make libcos_doubles_ctypes.so
     - python setup.py build_ext --inplace
+    - ls
 # cd to test folder
     - cd ../tests
 script:
