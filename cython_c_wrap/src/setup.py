@@ -38,7 +38,7 @@ with open(np_file_name, 'wb') as file:
         file.write(remote.read())
 
 # for SWIG NumPy Support
-cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy", sources=["cos_wrap_swi_numpyg.c", "cos_wrap_swig_numpy.i"])
+cos_wrap_swig_numpy = Extension("_cos_wrap_swig_numpy", sources=["cos_wrap_swig_numpy.c", "cos_wrap_swig_numpy.i"])
 
 # run the setup
 setup(ext_modules=[cos_wrap, cos_wrap_swig, cos_wrap_swig_numpy])
