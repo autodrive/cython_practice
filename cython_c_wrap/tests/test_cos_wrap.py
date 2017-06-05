@@ -5,6 +5,7 @@ import unittest
 import cos_wrap  # Python-C-API
 import cos_wrap_ctypes  # ctypes
 import cos_wrap_ctypes_numpy  # ctypes NumPy support
+import cos_wrap_swig  # SWIG
 import numpy as np
 
 
@@ -54,6 +55,14 @@ class TestCosWrapCtype(TestCosWrapBase):
     def test_ctypes_numpy_cos_wrong_argument(self):
         with self.assertRaises(ctypes.ArgumentError):
             cos_wrap_ctypes_numpy.cos_doubles_ctypes('foo', 'goo')
+
+
+class TestCosWrapSwig(TestCosWrapBase):
+    def test_cos(self):
+        self.run_test_float(cos_wrap_swig.cos_func_swig)
+
+    def test_cos_wrong_argument(self):
+        self.run_test_float_wrong_arg(cos_wrap_swig.cos_func_swig, TypeError)
 
 
 if __name__ == '__main__':
