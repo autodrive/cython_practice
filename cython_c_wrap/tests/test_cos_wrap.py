@@ -81,6 +81,9 @@ class TestCosWrapCython(TestCosWrapBase):
     def test_cos_cython_numpy(self):
         self.run_test_numpy_cos(cos_cython_numpy.cos_cython_numpy_py_func)
 
+    def test_cos_cython_numpy_wrong_argument(self):
+        self.run_test_numpy_cos_wrong_argument(cos_cython_numpy.cos_cython_numpy_py_func, TypeError)
+
 
 if __name__ == '__main__':
     unittest.main()
