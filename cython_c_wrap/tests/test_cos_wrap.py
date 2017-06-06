@@ -2,6 +2,7 @@ import ctypes
 import math
 import unittest
 
+import cos_cython_numpy
 import cos_wrap  # Python-C-API
 import cos_wrap_ctypes  # ctypes
 import cos_wrap_ctypes_numpy  # ctypes NumPy support
@@ -74,6 +75,9 @@ class TestCosWrapCython(TestCosWrapBase):
 
     def test_cos_wrong_argument(self):
         self.run_test_float_wrong_arg(cos_wrap_cython.cos_func_cython, TypeError)
+
+    def test_cos_cython_numpy(self):
+        self.run_test_numpy_cos(cos_cython_numpy.cos_cython_numpy_py_func)
 
 
 if __name__ == '__main__':
