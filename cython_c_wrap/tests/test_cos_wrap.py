@@ -2,9 +2,11 @@ import ctypes
 import math
 import unittest
 
+import cos_cython_numpy
 import cos_wrap  # Python-C-API
 import cos_wrap_ctypes  # ctypes
 import cos_wrap_ctypes_numpy  # ctypes NumPy support
+import cos_wrap_cython  # cython
 import cos_wrap_swig  # SWIG
 import numpy as np
 
@@ -24,6 +26,20 @@ class TestCosWrapBase(unittest.TestCase):
         with self.assertRaises(exception):
             f('foo')
 
+    def run_test_numpy_cos(self, f):
+        angle_deg_array = np.arange(-360, 361)
+        angle_rad_array = np.deg2rad(angle_deg_array)
+        result_array = np.empty_like(angle_rad_array)
+        # a little different
+        f(angle_rad_array, result_array)
+        expected_array = np.cos(angle_rad_array)
+        for angle_deg, result, expected in zip(angle_deg_array, result_array, expected_array):
+            self.assertAlmostEqual(expected, result, msg='angle = %d (deg)' % angle_deg)
+
+    def run_test_numpy_cos_wrong_argument(self, f, exception):
+        with self.assertRaises(exception):
+            f('foo', 'goo')
+
 
 class TestCosWrap(TestCosWrapBase):
     def test_cos(self):
@@ -41,20 +57,10 @@ class TestCosWrapCtype(TestCosWrapBase):
         self.run_test_float_wrong_arg(cos_wrap_ctypes.cos_func, ctypes.ArgumentError)
 
     def test_ctypes_numpy_cos(self):
-        angle_deg_array = np.arange(-360, 361)
-        angle_rad_array = np.deg2rad(angle_deg_array)
-        result_array = np.empty_like(angle_rad_array)
-
-        # a little different
-        cos_wrap_ctypes_numpy.cos_doubles_ctypes(angle_rad_array, result_array)
-        expected_array = np.cos(angle_rad_array)
-
-        for angle_deg, result, expected in zip(angle_deg_array, result_array, expected_array):
-            self.assertAlmostEqual(expected, result, msg='angle = %d (deg)' % angle_deg)
+        self.run_test_numpy_cos(cos_wrap_ctypes_numpy.cos_doubles_ctypes)
 
     def test_ctypes_numpy_cos_wrong_argument(self):
-        with self.assertRaises(ctypes.ArgumentError):
-            cos_wrap_ctypes_numpy.cos_doubles_ctypes('foo', 'goo')
+        self.run_test_numpy_cos_wrong_argument(cos_wrap_ctypes_numpy.cos_doubles_ctypes, ctypes.ArgumentError)
 
 
 class TestCosWrapSwig(TestCosWrapBase):
@@ -63,6 +69,20 @@ class TestCosWrapSwig(TestCosWrapBase):
 
     def test_cos_wrong_argument(self):
         self.run_test_float_wrong_arg(cos_wrap_swig.cos_func_swig, TypeError)
+
+
+class TestCosWrapCython(TestCosWrapBase):
+    def test_cos(self):
+        self.run_test_float(cos_wrap_cython.cos_func_cython)
+
+    def test_cos_wrong_argument(self):
+        self.run_test_float_wrong_arg(cos_wrap_cython.cos_func_cython, TypeError)
+
+    def test_cos_cython_numpy(self):
+        self.run_test_numpy_cos(cos_cython_numpy.cos_cython_numpy_py_func)
+
+    def test_cos_cython_numpy_wrong_argument(self):
+        self.run_test_numpy_cos_wrong_argument(cos_cython_numpy.cos_cython_numpy_py_func, TypeError)
 
 
 if __name__ == '__main__':
