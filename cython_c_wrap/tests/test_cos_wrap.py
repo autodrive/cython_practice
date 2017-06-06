@@ -35,6 +35,10 @@ class TestCosWrapBase(unittest.TestCase):
         for angle_deg, result, expected in zip(angle_deg_array, result_array, expected_array):
             self.assertAlmostEqual(expected, result, msg='angle = %d (deg)' % angle_deg)
 
+    def run_test_numpy_cos_wrong_argument(self, f, exception):
+        with self.assertRaises(exception):
+            f('foo', 'goo')
+
 
 class TestCosWrap(TestCosWrapBase):
     def test_cos(self):
@@ -55,8 +59,7 @@ class TestCosWrapCtype(TestCosWrapBase):
         self.run_test_numpy_cos(cos_wrap_ctypes_numpy.cos_doubles_ctypes)
 
     def test_ctypes_numpy_cos_wrong_argument(self):
-        with self.assertRaises(ctypes.ArgumentError):
-            cos_wrap_ctypes_numpy.cos_doubles_ctypes('foo', 'goo')
+        self.run_test_numpy_cos_wrong_argument(cos_wrap_ctypes_numpy.cos_doubles_ctypes, ctypes.ArgumentError)
 
 
 class TestCosWrapSwig(TestCosWrapBase):
