@@ -3,6 +3,7 @@
 */
 
 #include <math.h>
+#include "cos_cython_numpy.h"
 
 /*  Compute the cosine of each element in in_array, storing the result in
  *  out_array. */
