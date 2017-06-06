@@ -53,8 +53,7 @@ class TestCosWrapCtype(TestCosWrapBase):
         self.run_test_float_wrong_arg(cos_wrap_ctypes.cos_func, ctypes.ArgumentError)
 
     def test_ctypes_numpy_cos(self):
-        f = cos_wrap_ctypes_numpy.cos_doubles_ctypes
-        self.run_test_numpy_cos(f)
+        self.run_test_numpy_cos(cos_wrap_ctypes_numpy.cos_doubles_ctypes)
 
     def test_ctypes_numpy_cos_wrong_argument(self):
         with self.assertRaises(ctypes.ArgumentError):
