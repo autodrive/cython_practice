@@ -4,9 +4,12 @@
 #   Available: , http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id8
 # Valentin Haenel, 2.8.5.1. Example, 2.8.5. Cython, Scipy Lectures, Oct 18 2016, [Online]
 #   Available: , http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id10
+# Valentin Haenel, 2.8.5.2. Numpy Support, 2.8.5. Cython, Scipy Lectures, Oct 18 2016, [Online]
+#   Available: , http://www.scipy-lectures.org/advanced/interfacing_with_c/interfacing_with_c.html#id13
 
 from distutils.core import setup, Extension
 
+import numpy
 from Cython.Distutils import build_ext
 
 # define the extension module for Python-C-API
@@ -21,3 +24,10 @@ setup(ext_modules=[cos_wrap, cos_wrap_swig])
 # for Cython
 setup(cmdclass={'build_ext': build_ext},
       ext_modules=[Extension("cos_wrap_cython", ['cos_wrap_cython.pyx'])])
+
+# for NumPy Support of Cython
+setup(cmdclass={'build_ext': build_ext},
+      ext_modules=[Extension("cos_cython_numpy",
+                             sources=['_cos_cython_numpy.pyx', "cos_cython_numpy.c"],
+                             include_dirs=[numpy.get_include()])],
+      )
