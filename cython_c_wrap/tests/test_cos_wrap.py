@@ -4,11 +4,12 @@ import unittest
 
 import cos_cython_numpy
 import cos_wrap  # Python-C-API
+import cos_wrap_cython  # cython
+import numpy as np
+
 import cos_wrap_ctypes  # ctypes
 import cos_wrap_ctypes_numpy  # ctypes NumPy support
-import cos_wrap_cython  # cython
 import cos_wrap_swig  # SWIG
-import numpy as np
 
 
 class TestCosWrapBase(unittest.TestCase):
@@ -21,6 +22,7 @@ class TestCosWrapBase(unittest.TestCase):
 
             self.assertAlmostEqual(expected, result,
                                    msg='function = %r\nangle = %d (deg)' % (f, angle_deg))
+        print('run_test_float : passed %r' % f)
 
     def run_test_float_wrong_arg(self, f, exception):
         with self.assertRaises(exception):
