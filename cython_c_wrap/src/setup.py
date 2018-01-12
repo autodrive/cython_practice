@@ -12,19 +12,6 @@ from distutils.core import setup, Extension
 import numpy
 from Cython.Distutils import build_ext
 
-# define the extension module for Python-C-API
-cos_wrap = Extension('cos_wrap', sources=['cos_wrap.c'])
-
-# for SWIG
-cos_wrap_swig = Extension("_cos_wrap_swig", sources=["cos_wrap_swig.c", "cos_wrap_swig.i"])
-
-print('for Python C API & SWIG '.ljust(60, '#'))
-setup(ext_modules=[cos_wrap, cos_wrap_swig])
-
-print('for Cython '.ljust(60, '#'))
-setup(cmdclass={'build_ext': build_ext},
-      ext_modules=[Extension("cos_wrap_cython", ['cos_wrap_cython.pyx'])])
-
 print('for NumPy Support of Cython '.ljust(60, '#'))
 setup(cmdclass={'build_ext': build_ext},
       ext_modules=[Extension("cos_cython_numpy",

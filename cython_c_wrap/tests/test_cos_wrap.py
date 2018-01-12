@@ -1,13 +1,7 @@
-import ctypes
 import math
 import unittest
 
 import cos_cython_numpy
-import cos_wrap  # Python-C-API
-import cos_wrap_ctypes  # ctypes
-import cos_wrap_ctypes_numpy  # ctypes NumPy support
-import cos_wrap_cython  # cython
-import cos_wrap_swig  # SWIG
 import numpy as np
 
 
@@ -41,43 +35,7 @@ class TestCosWrapBase(unittest.TestCase):
             f('foo', 'goo')
 
 
-class TestCosWrap(TestCosWrapBase):
-    def test_cos(self):
-        self.run_test_float(cos_wrap.cos_func)
-
-    def test_cos_wrong_argument(self):
-        self.run_test_float_wrong_arg(cos_wrap.cos_func, TypeError)
-
-
-class TestCosWrapCtype(TestCosWrapBase):
-    def test_ctypes_cos(self):
-        self.run_test_float(cos_wrap_ctypes.cos_func)
-
-    def test_ctypes_cos_wrong_argument(self):
-        self.run_test_float_wrong_arg(cos_wrap_ctypes.cos_func, ctypes.ArgumentError)
-
-    def test_ctypes_numpy_cos(self):
-        self.run_test_numpy_cos(cos_wrap_ctypes_numpy.cos_doubles_ctypes)
-
-    def test_ctypes_numpy_cos_wrong_argument(self):
-        self.run_test_numpy_cos_wrong_argument(cos_wrap_ctypes_numpy.cos_doubles_ctypes, ctypes.ArgumentError)
-
-
-class TestCosWrapSwig(TestCosWrapBase):
-    def test_cos(self):
-        self.run_test_float(cos_wrap_swig.cos_func_swig)
-
-    def test_cos_wrong_argument(self):
-        self.run_test_float_wrong_arg(cos_wrap_swig.cos_func_swig, TypeError)
-
-
 class TestCosWrapCython(TestCosWrapBase):
-    def test_cos(self):
-        self.run_test_float(cos_wrap_cython.cos_func_cython)
-
-    def test_cos_wrong_argument(self):
-        self.run_test_float_wrong_arg(cos_wrap_cython.cos_func_cython, TypeError)
-
     def test_cos_cython_numpy(self):
         self.run_test_numpy_cos(cos_cython_numpy.cos_cython_numpy_py_func)
 
