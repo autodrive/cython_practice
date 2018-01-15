@@ -30,5 +30,7 @@ def cos_cython_numpy_py_func(np.ndarray[double, ndim=1, mode="c"] in_array not N
                 <double*> np.PyArray_DATA(out_array),
                 in_array.shape[0])
 
-def lsame_numpy_func(a, b):
-    lsame_(a, b, len(a), len(b))
+def lsame_numpy_func(str a, str b):
+    cdef a_bytes = a.encode()
+    cdef b_bytes = b.encode()
+    return lsame_(a_bytes, b_bytes, len(a_bytes), len(b_bytes))

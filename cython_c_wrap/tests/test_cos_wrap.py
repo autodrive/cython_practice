@@ -43,5 +43,15 @@ class TestCosWrapCython(TestCosWrapBase):
         self.run_test_numpy_cos_wrong_argument(cos_cython_numpy.cos_cython_numpy_py_func, TypeError)
 
 
+class TestLsame(unittest.TestCase):
+    def test_lsame(self):
+        in_txt_0 = 'abc'
+        in_txt_1 = 'abc'
+        in_txt_2 = 'def'
+
+        cos_cython_numpy.lsame_numpy_func(in_txt_0, in_txt_1)
+        cos_cython_numpy.lsame_numpy_func(in_txt_0, in_txt_2)
+
+
 if __name__ == '__main__':
     unittest.main()
