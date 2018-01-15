@@ -15,6 +15,6 @@ from Cython.Distutils import build_ext
 print('for NumPy Support of Cython '.ljust(60, '#'))
 setup(cmdclass={'build_ext': build_ext},
       ext_modules=[Extension("cos_cython_numpy",
-                             sources=['_cos_cython_numpy.pyx', "cos_cython_numpy.c"],
+                             sources=['_cos_cython_numpy.pyx', "cos_cython_numpy.c", "lsame.c"],
                              include_dirs=[numpy.get_include()])],
       )
