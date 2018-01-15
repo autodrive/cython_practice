@@ -49,8 +49,8 @@ class TestLsame(unittest.TestCase):
         in_txt_1 = 'abc'
         in_txt_2 = 'def'
 
-        self.assertTrue(cos_cython_numpy.lsame_numpy_func(in_txt_0, in_txt_1))
-        self.assertFalse(cos_cython_numpy.lsame_numpy_func(in_txt_0, in_txt_2))
+        self.assertTrue(cos_cython_numpy.lsame(in_txt_0, in_txt_1))
+        self.assertFalse(cos_cython_numpy.lsame(in_txt_0, in_txt_2))
 
 
 if __name__ == '__main__':
