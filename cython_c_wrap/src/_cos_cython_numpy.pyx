@@ -33,4 +33,16 @@ def cos_cython_numpy_py_func(np.ndarray[double, ndim=1, mode="c"] in_array not N
 def lsame_numpy_func(str a, str b):
     cdef a_bytes = a.encode()
     cdef b_bytes = b.encode()
-    return lsame_(a_bytes, b_bytes, len(a_bytes), len(b_bytes))
+
+    result_ = lsame_(a_bytes, b_bytes, len(a_bytes), len(b_bytes))
+
+    if 0 == result_:
+        result = True
+    elif 1 == result_:
+        result = True
+    elif False == result_:
+        result = False
+    else:
+        raise ValueError('lsame result = %r' % result_)
+
+    return result
