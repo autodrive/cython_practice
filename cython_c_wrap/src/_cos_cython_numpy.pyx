@@ -34,15 +34,4 @@ def lsame_numpy_func(str a, str b):
     cdef a_bytes = a.encode()
     cdef b_bytes = b.encode()
 
-    result_ = lsame_(a_bytes, b_bytes, len(a_bytes), len(b_bytes))
-
-    if 0 == result_:
-        result = True
-    elif 1 == result_:
-        result = True
-    elif False == result_:
-        result = False
-    else:
-        raise ValueError('lsame result = %r' % result_)
-
-    return result
+    return bool(lsame_(a_bytes, b_bytes, len(a_bytes), len(b_bytes)))
