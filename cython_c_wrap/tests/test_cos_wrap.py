@@ -1,7 +1,13 @@
 import math
 import unittest
 
-import cos_cython_numpy
+before = set(dir())
+from cython_c_wrap.src import cos_cython_numpy
+after = set(dir())
+
+diff = after - before
+print(f'diff = {diff}')
+
 import numpy as np
 
 
