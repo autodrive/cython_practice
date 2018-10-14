@@ -1,0 +1,15 @@
+{
+    // https://docs.python.org/3/library/unittest.html
+    "python.unitTest.unittestArgs": [
+        // verbose
+        "-v", 
+        "discover",
+        // start directory
+        "-s","cython_c_wrap/tests",
+        // test file pattern
+        "-p", "test_*.py"
+    ],
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.unittestEnabled": true
+}
