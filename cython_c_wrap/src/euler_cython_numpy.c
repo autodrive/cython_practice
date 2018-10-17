@@ -16,7 +16,8 @@ void euler_cython_c_function(double * result_t, double * result_x, const int siz
     // Initial state
     double x0 = 1.0;
     double dx_dt = 0.0;
-    
+
+    int i = 0;
     // Length of simulation
     const int n = (int) ((te - ti) / delta_t) + 1;
 
@@ -29,7 +30,7 @@ void euler_cython_c_function(double * result_t, double * result_x, const int siz
     
     // Time step loop
     // Watch the last value of i here
-    for (int i=0; (n-1)>i; ++i){
+    for (i=0; (n-1)>i; ++i){
         // Calculate derivative
         dx_dt = diff_eq(result_x[i]);
         // Calculate state value of the next step
